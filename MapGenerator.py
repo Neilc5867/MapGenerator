@@ -1,7 +1,7 @@
 import random
 import array
-import numpy.matlib
-import matplotlib
+import numpy.matlib as np
+import matplotlib.pyplot as plt
 import math
 
 """
@@ -34,6 +34,7 @@ class Terrain:
             print(ve)
         self.name=name
         self.matrix=[]
+        self.locations=[]
         rows=self.size
         cols=self.size
         for r in range(0,rows):
@@ -59,6 +60,8 @@ class Terrain:
             feature=locations.get(random.randint(1,len(locations)))
             print("Placing " + str(feature) + " at " + str(xVal) + "," + str(yVal) + ".")
             self.matrix[yVal][xVal]="@"
+            locationCoord=(xVal, yVal)
+            self.locations.append(locationCoord)
         # call functions to make geographical features here later.
         return
 
