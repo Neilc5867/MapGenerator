@@ -92,5 +92,6 @@ if __name__ == "__main__":
     bonkonia=Terrain(15,"Bonkonia")
     bonkonia.populate()
     bonkonia.show()
+    bonkonia.show_graphic()
 
     print("End Main.")
