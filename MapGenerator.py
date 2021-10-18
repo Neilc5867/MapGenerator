@@ -89,7 +89,23 @@ class Terrain:
     """
     def show_graphic(self):
         print("Show graphic function called.")
+        map = np.array(self.locations)
+        N=self.size
 
+        #colour background white - 1 is white.
+        arr = np.ones((N,N), dtype = 'bool')
+        # color the dots black (0)
+        arr[map[:,1], map[:,0]] = 0
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.imshow(arr, interpolation='nearest', cmap = 'gray')
+        ax.invert_yaxis()
+        # ax.axis('off')
+        plt.show()
+
+#Main
 if __name__ == "__main__":
     print("Main.")
     bonkonia=Terrain(15,"Bonkonia")
