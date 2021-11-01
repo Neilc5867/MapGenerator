@@ -35,6 +35,7 @@ class Terrain:
         self.name=name
         self.matrix=[]
         self.locations=[]
+        self.mapCoord=[]
         rows=self.size
         cols=self.size
         for r in range(0,rows):
@@ -60,7 +61,7 @@ class Terrain:
             feature=locations.get(random.randint(1,len(locations)))
             print("Placing " + str(feature) + " at " + str(xVal) + "," + str(yVal) + ".")
             self.matrix[yVal][xVal]="@"
-            locationCoord=(xVal, yVal)
+            locationCoord=(xVal, yVal, str(feature))
             self.locations.append(locationCoord)
         # call functions to make geographical features here later.
         return
@@ -89,21 +90,39 @@ class Terrain:
     """
     def show_graphic(self):
         print("Show graphic function called.")
-        map = np.array(self.locations)
+        mapList = np.array(self.locations)
         N=self.size
+        #plot each spot.
+        for spot in mapList:
+            #plt.plot(spot[0],spot[1])
+            print("spot x:" + str(spot[0]))
+            print("spot y:" + str(spot[1]))
+            print("spot label:" + str(spot[2]))
+            coord=(float(spot[0]),float(spot[1]))
+            print("With floats:" + str(float(spot[0])) + "," + str(float(spot[1])) )
+            self.mapCoord.append(coord)
 
-        #colour background white - 1 is white.
-        arr = np.ones((N,N), dtype = 'bool')
-        # color the dots black (0)
-        arr[map[:,1], map[:,0]] = 0
+
+        fig= plt.figure()
+        ax= fig.gca()
+        plt.axis([0,N,0,N])
+        for point in mapList:
+            plt.scatter(int(point[0]),int(point[1]))
+            #plt.annotate(point[2],(point[0],point[1]))
+        plt.grid(True)
+        plt.show()
+
+        """
+        Older image show
 
         fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
-
-        ax.imshow(arr, interpolation='nearest', cmap = 'gray')
+        # draw the axes - nRows,nCols,index(start value.)
+        ax = fig.add_subplot(1,1,1)
+        ax.imshow(self.mapCoord, interpolation='nearest', cmap = 'gray')
         ax.invert_yaxis()
-        # ax.axis('off')
+        #ax.axis('off')
         plt.show()
+        """
 
 #Main
 if __name__ == "__main__":
