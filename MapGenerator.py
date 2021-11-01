@@ -51,7 +51,7 @@ class Terrain:
         # initialize the locations dict id => string. .
         locations={1:"Bandit Camp", 2:"Village", 3:"Shrine", 4:"Creature nest"}
 
-        # roll a d6 for each location. Num of locations is 20% of total grid size.
+        # roll for each location. Num of locations is 20% of total grid size.
         numLocations= math.floor(self.size * .2)
         print("Adding " + str(numLocations) + " locations.")
         # origin is at top left
@@ -92,16 +92,6 @@ class Terrain:
         print("Show graphic function called.")
         mapList = np.array(self.locations)
         N=self.size
-        #plot each spot.
-        for spot in mapList:
-            #plt.plot(spot[0],spot[1])
-            print("spot x:" + str(spot[0]))
-            print("spot y:" + str(spot[1]))
-            print("spot label:" + str(spot[2]))
-            coord=(float(spot[0]),float(spot[1]))
-            print("With floats:" + str(float(spot[0])) + "," + str(float(spot[1])) )
-            self.mapCoord.append(coord)
-
         #fig object, the entire image
         fig= plt.figure()
         ax= fig.gca()
