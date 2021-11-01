@@ -102,27 +102,21 @@ class Terrain:
             print("With floats:" + str(float(spot[0])) + "," + str(float(spot[1])) )
             self.mapCoord.append(coord)
 
-
+        #fig object, the entire image
         fig= plt.figure()
         ax= fig.gca()
+        plt.title(self.name)
+        #set to show all x and y values.
+        plt.xticks(np.arange(0,N,1.0))
+        plt.yticks(np.arange(0,N,1.0))
+        #exten of the axes.
         plt.axis([0,N,0,N])
+        #plot each point.
         for point in mapList:
             plt.scatter(int(point[0]),int(point[1]))
-            #plt.annotate(point[2],(point[0],point[1]))
+            plt.annotate(str(point[2]),(float(point[0]),float(point[1])))
         plt.grid(True)
         plt.show()
-
-        """
-        Older image show
-
-        fig = plt.figure()
-        # draw the axes - nRows,nCols,index(start value.)
-        ax = fig.add_subplot(1,1,1)
-        ax.imshow(self.mapCoord, interpolation='nearest', cmap = 'gray')
-        ax.invert_yaxis()
-        #ax.axis('off')
-        plt.show()
-        """
 
 #Main
 if __name__ == "__main__":
