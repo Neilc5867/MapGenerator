@@ -1,5 +1,5 @@
 import MapGenerator as map
-import unittest
+import pytest
 
 class Test():
     pass
